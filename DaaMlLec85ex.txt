@@ -1,0 +1,422 @@
+Experience → Salary ka use karunga.
+
+1. Data banana
+years = [1,2,3,4,5,6,7]
+salary = [25,30,35,40,45,50,55]
+years → employee ke experience years.
+salary → corresponding salary.
+Example: 1 year → 25, 2 years → 30, etc.
+2. Regression Formula
+# y = mx+c
+
+Ye Linear Regression ka formula hai.
+
+y → output, yani Salary
+x → input, yani Experience
+m → coefficient/slope
+c → intercept
+
+Real life: Experience badhne par salary kitni badh rahi hai, ye formula calculate karta hai.
+
+3. m aur c set karna
+m = 5
+c = 20
+m = 5 → har 1 year experience par salary 5 units badh rahi hai.
+c = 20 → starting/base value.
+4. Input value
+x = 9
+
+Matlab employee ka experience 9 years hai.
+
+5. Prediction
+m*x+c
+
+Formula:
+
+5 × 9 + 20 = 65
+
+So output:
+
+65
+
+Yani 9 years experience → predicted salary 65.
+
+6. User se experience lena
+x = int(input("Enter Experience in Years : "))
+
+User se experience leta hai.
+
+Example:
+
+Enter Experience in Years : 9
+input() → user se value leta hai.
+int() → value ko number mein convert karta hai.
+x → experience store karta hai.
+7. Salary print karna
+print("Predicted Salary :",m*x+c)
+
+Formula laga kar predicted salary print karta hai.
+
+Output:
+
+Predicted Salary : 65
+8. Machine Learning
+# Machine Learning is a mathematical formula
+
+Simple meaning:
+
+Machine Learning data se mathematical relationship find karke prediction karta hai.
+
+Example:
+
+Experience → Salary
+
+Data dekhkar model seekhta hai:
+
+Salary = 5 × Experience + 20
+
+Scikit-learn
+9. Scikit-learn
+# scikit-learn library
+
+Scikit-learn Python ki popular Machine Learning library hai.
+
+Isme Linear Regression, Decision Tree, KNN, etc. ready-made algorithms milte hain.
+
+10. Install karna
+!pip install scikit-learn
+pip → Python packages install karne ka tool.
+install → package install karta hai.
+scikit-learn → Machine Learning library.
+! → Jupyter Notebook mein system command run karne ke liye.
+
+Aapke output mein:
+
+Requirement already satisfied
+
+ka matlab Scikit-learn already installed hai, isliye dobara install karne ki zarurat nahi.
+
+11. pip update notice
+[notice] A new release of pip is available...
+
+Ye error nahi hai.
+
+Sirf bataya ja raha hai ki pip ka newer version available hai.
+
+Pandas
+12. Pandas import
+import pandas as pd
+
+Pandas ko import karke short name pd diya.
+
+Real life: Pandas Excel-like tables/data handle karne ke liye use hota hai.
+
+13. Data again
+years = [1,2,3,4,5,6,7]
+salary = [25,30,35,40,45,50,55]
+
+Experience aur salary ka data create kiya.
+
+14. DataFrame banana
+df = pd.DataFrame({
+    'Years':years,
+    'Salary':salary
+})
+
+Lists ko table mein convert karta hai.
+
+Result:
+
+Years	Salary
+1	25
+2	30
+3	35
+4	40
+5	45
+6	50
+7	55
+
+df = DataFrame/table.
+
+15. DataFrame dekhna
+df
+
+DataFrame ko screen par display karta hai.
+
+X और y
+16. Input X banana
+X = df.drop(columns=['Salary'])
+
+Salary column remove karke baaki data X mein store karta hai.
+
+Result:
+
+Years
+1
+2
+3
+4
+5
+6
+7
+
+👉 X = Input/Feature
+
+17. Output y banana
+y = df['Salary']
+
+Sirf Salary column leta hai.
+
+👉 y = Output/Target
+
+So:
+
+X = Experience
+y = Salary
+Linear Regression Model
+18. LinearRegression import
+from sklearn.linear_model import LinearRegression
+
+Scikit-learn se Linear Regression algorithm import karta hai.
+
+19. Model create karna
+model = LinearRegression()
+
+Ek empty Linear Regression model banaya.
+
+Simple language:
+
+Ab machine ko learning ke liye ready kar diya.
+
+20. Model train karna
+model.fit(X, y)
+
+Ye sabse important command hai.
+
+fit() model ko X aur y ke relationship se learn/train karata hai.
+
+Data:
+
+Experience → Salary
+1 → 25
+2 → 30
+3 → 35
+...
+7 → 55
+
+Model automatically find karta hai:
+
+Salary = 5 × Experience + 20
+Prediction
+21. Salary predict karna
+model.predict([[9]])
+
+Model ko bataya:
+
+Experience = 9 years
+
+Model calculate karta hai:
+
+5 × 9 + 20 = 65
+
+Output:
+
+array([65.])
+
+65. ka matlab simply 65 hai, decimal form mein.
+
+22. Warning
+UserWarning: X does not have valid feature names
+
+Ye error nahi hai.
+
+Aapne training mein:
+
+X
+
+use kiya tha jisme column name Years tha.
+
+Prediction mein:
+
+[[9]]
+
+diya, jisme column name nahi hai.
+
+Better way:
+
+model.predict(pd.DataFrame({'Years':[9]}))
+Model ne kya seekha?
+23. Intercept
+model.intercept_
+
+Output:
+
+20.000000000000004
+
+Mathematically ye 20 hai.
+
+👉 c = 20
+
+Meaning:
+
+Experience 0 hone par predicted salary = 20.
+
+24. Coefficient
+model.coef_
+
+Output:
+
+array([5.])
+
+👉 m = 5
+
+Meaning:
+
+Experience 1 year badhne par salary 5 units increase hoti hai.
+
+So model ne khud discover kiya:
+
+Salary = 5 × Years + 20
+Reverse Prediction
+
+Ab aapne direction change kar di.
+
+Pehle:
+
+Experience → Salary
+
+Ab:
+
+Salary → Experience
+25. New model
+model = LinearRegression()
+
+Naya Linear Regression model banaya.
+
+26. Salary ko X banana
+X = df.drop(columns=['Years'])
+
+Years ko remove kiya.
+
+Ab:
+
+X = Salary
+27. Years ko y banana
+y = df['Years']
+
+Ab:
+
+y = Years
+
+So:
+
+X = Salary
+y = Experience
+28. Train
+model.fit(X,y)
+
+Model ab seekhega:
+
+Salary → Experience
+
+Data:
+
+25 → 1
+30 → 2
+35 → 3
+...
+55 → 7
+
+Model formula approximately:
+
+Years = 0.2 × Salary - 4
+
+29. Salary 65 se experience predict
+model.predict([[65]])
+
+Calculation:
+
+0.2 × 65 - 4 = 9
+
+Output:
+
+array([9.])
+
+👉 Salary 65 → Experience 9 years
+
+30. New coefficient
+model.coef_
+
+Output:
+
+array([0.2])
+
+👉 m = 0.2
+
+31. New intercept
+model.intercept_
+
+Output:
+
+-4.0
+
+👉 c = -4
+
+Formula:
+
+Years = 0.2 × Salary - 4
+
+32. Salary 20 → Experience?
+model.predict([[20]])
+
+Calculation:
+
+0.2 × 20 - 4 = 0
+
+Output:
+
+array([0.])
+
+👉 Salary 20 ke according model 0 years experience predict karta hai.
+
+33. Salary 33 → Experience
+model.predict([[33]])
+
+Calculation:
+
+0.2 × 33 - 4 = 2.6
+
+So approximately:
+
+array([2.6])
+
+👉 Salary 33 → approximately 2.6 years experience
+
+⭐ Sabse important concept
+
+Is complete example ko bas is flow mein yaad rakho:
+
+Raw Data
+   ↓
+DataFrame
+   ↓
+X = Input
+y = Output
+   ↓
+LinearRegression()
+   ↓
+model.fit(X,y)
+   ↓
+Model learns m and c
+   ↓
+model.predict()
+   ↓
+Prediction
+
+Simple real-life example:
+
+Employee ka Experience input hai → Machine Learning model → Salary predict karta hai.
+
+And reverse case mein:
+
+Employee ki Salary input hai → Machine Learning model → Experience predict karta hai.
